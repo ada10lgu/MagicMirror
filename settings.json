@@ -1,41 +1,26 @@
 [
 	{
-		"type": "exit",
-		"size": {
-			"w": 20,
-			"h": 20
-		},
-		"position": {
-			"x": -20,
-			"y": -20
-		},
-		"anchor": {
-			"x": "RIGHT",
-			"y": "BOTTOM"
-		}
-	},
-	{
 		"type": "clock",
 		"size": {
-			"w": 350,
-			"h": 200
+			"w": 500,
+			"h": 250
 		},
 		"position": {
-			"x": -350,
+			"x": 20,
 			"y": 0
 		},
 		"fonts": {
 			"time": {
 				"font": "Verdana",
-				"size": 100
+				"size": 150
 			},
 			"date": {
 				"font": "Verdana",
-				"size": 20
+				"size": 40
 			}
 		},
 		"anchor": {
-			"x": "RIGHT",
+			"x": "LEFT",
 			"y": "TOP"
 		}
 	},
@@ -46,23 +31,23 @@
 			"h": 150
 		},
 		"position": {
-			"x": -500,
-			"y": -75
+			"x": 0,
+			"y": -150
 		},
 		"data": {
 			"font": {
 				"font": "Verdana",
-				"size": 100
+				"size": 80
 			},
 			"text": [
-				"Hej nistiman","jeg er et tastatur"
+				"Hej Nistiman","Hej Niklas","Hej Lars","5!","Jaha ja","","","","","","",""
 			],
-			"random": false,
+			"random": true,
 			"delay":10
 		},
 		"anchor": {
-			"x": "RIGHT/2",
-			"y": "BOTTOM/2"
+			"x": "LEFT",
+			"y": "BOTTOM"
 		}
 	}
 ]

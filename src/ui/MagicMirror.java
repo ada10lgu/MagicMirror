@@ -48,6 +48,9 @@ public class MagicMirror extends JFrame {
 	}
 
 	public static void main(String[] args) throws FileNotFoundException {
+		System.out.println(System.getProperty("os.name"));
+		
+		
 		File json = new File("settings.json");
 
 		if (args.length > 0) {

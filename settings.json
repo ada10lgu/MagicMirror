@@ -1,0 +1,68 @@
+[
+	{
+		"type": "exit",
+		"size": {
+			"w": 20,
+			"h": 20
+		},
+		"position": {
+			"x": -20,
+			"y": -20
+		},
+		"anchor": {
+			"x": "RIGHT",
+			"y": "BOTTOM"
+		}
+	},
+	{
+		"type": "clock",
+		"size": {
+			"w": 350,
+			"h": 200
+		},
+		"position": {
+			"x": -350,
+			"y": 0
+		},
+		"fonts": {
+			"time": {
+				"font": "Verdana",
+				"size": 100
+			},
+			"date": {
+				"font": "Verdana",
+				"size": 20
+			}
+		},
+		"anchor": {
+			"x": "RIGHT",
+			"y": "TOP"
+		}
+	},
+	{
+		"type": "text",
+		"size": {
+			"w": 1000,
+			"h": 150
+		},
+		"position": {
+			"x": -500,
+			"y": -75
+		},
+		"data": {
+			"font": {
+				"font": "Verdana",
+				"size": 100
+			},
+			"text": [
+				"Hej nistiman","jeg er et tastatur"
+			],
+			"random": false,
+			"delay":10
+		},
+		"anchor": {
+			"x": "RIGHT/2",
+			"y": "BOTTOM/2"
+		}
+	}
+]

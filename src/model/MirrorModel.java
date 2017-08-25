@@ -13,15 +13,14 @@ public class MirrorModel {
 	private ArrayList<Component> components;
 	private File json;
 
-
 	public MirrorModel(File json) throws FileNotFoundException {
 		this.json = json;
-		
+
 		System.out.println("Magic mirror loaded");
-		load();	
-				
+		load();
+
 	}
-	
+
 	public void load() throws FileNotFoundException {
 		System.out.print("Reading conifg...");
 		Scanner s = new Scanner(json);
@@ -30,15 +29,15 @@ public class MirrorModel {
 			sb.append(s.nextLine());
 		}
 		s.close();
-		
+
 		ArrayList<Component> components = new ArrayList<>();
-		
+
 		for (Object o : new JSONArray(sb.toString())) {
 			components.add(new Component((JSONObject) o));
 		}
-		
+
 		this.components = components;
 		System.out.println("done!");
-				
+		System.out.printf("%d components%n", components.size());
 	}
 }

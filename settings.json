@@ -1,27 +1,12 @@
 [
 	{
-		"type": "exit",
-		"size": {
-			"w": 20,
-			"h": 20
-		},
-		"position": {
-			"x": -20,
-			"y": -20
-		},
-		"anchor": {
-			"x": "RIGHT",
-			"y": "BOTTOM"
-		}
-	},
-	{
 		"type": "clock",
 		"size": {
 			"w": 350,
 			"h": 200
 		},
 		"position": {
-			"x": -350,
+			"x": 0,
 			"y": 0
 		},
 		"fonts": {
@@ -33,10 +18,6 @@
 				"font": "Verdana",
 				"size": 20
 			}
-		},
-		"anchor": {
-			"x": "RIGHT",
-			"y": "TOP"
 		}
 	},
 	{

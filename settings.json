@@ -36,10 +36,11 @@
 				"size": 100
 			},
 			"text": [
-				"Hej nistiman","jeg er et tastatur"
+				"ett","två","tre","fyra","fem"
 			],
+			"allign": "center",
 			"random": false,
-			"delay":10
+			"delay":1
 		},
 		"anchor": {
 			"x": "RIGHT/2",

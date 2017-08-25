@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import model.component.Clock;
 import model.component.Component;
-
+import model.component.Text;
 
 @SuppressWarnings("serial")
 public abstract class MirrorComponent<E extends Component> extends JPanel {
@@ -39,6 +39,9 @@ public abstract class MirrorComponent<E extends Component> extends JPanel {
 		switch (component.getType()) {
 		case "clock":
 			comp = new ClockComponent((Clock) component);
+			break;
+		case "text":
+			comp = new TextComponent((Text) component);
 			break;
 		default:
 			comp = new UnknownComponent(component);

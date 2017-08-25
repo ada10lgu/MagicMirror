@@ -36,6 +36,10 @@ public class MirrorModel extends Observable {
 		return debug;
 	}
 
+	public synchronized void setDebug(boolean debug) {
+		this.debug = debug;
+	}
+
 	public synchronized List<Component> getComponents() {
 		ArrayList<Component> components = new ArrayList<>();
 		for (String key : tree.keySet()) {

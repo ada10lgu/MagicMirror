@@ -16,6 +16,8 @@ import model.MirrorModel;
 
 import org.json.JSONException;
 
+import controller.MirrorController;
+
 @SuppressWarnings("serial")
 public class MagicMirror extends JFrame {
 
@@ -88,6 +90,8 @@ public class MagicMirror extends JFrame {
 		}
 
 		new MagicMirror(model);
+		new MirrorController(model);
 		System.out.println("Magic mirror started");
+
 	}
 }

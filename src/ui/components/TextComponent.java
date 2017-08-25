@@ -1,50 +1,27 @@
 package ui.components;
 
-import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.Timer;
-
+import model.MirrorModel;
 import model.component.Text;
 
 @SuppressWarnings("serial")
-public class TextComponent extends MirrorComponent<Text> implements
-		ActionListener {
+public class TextComponent extends MirrorComponent<Text> {
 
-	private String text;
-	private Timer t;
+	public TextComponent(Text component, MirrorModel model) {
+		super(component, model);
 
-	public TextComponent(Text component) {
-		super(component);
-		t = new Timer(component.getDelay(), this);
-		t.start();
-		actionPerformed(null);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		text = component.getNext();
-		t.setDelay(component.getDelay());
 	}
 
 	@Override
 	protected void updateComponent() {
-		if (t != null) {
-			t.setDelay(component.getDelay());
-		}
+
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		g.setColor(BACKGROUND);
-		g.fillRect(10, 10, getWidth() - 20, getHeight() - 20);
-
-		String text = this.text;
+	public void paintComponent(Graphics g) {
+		String text = component.getText();
 		g.setFont(component.getFont());
 		FontMetrics fm = g.getFontMetrics();
 		g.setColor(TEXT);

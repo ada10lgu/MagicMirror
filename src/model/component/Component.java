@@ -95,7 +95,10 @@ public class Component {
 			component = new Clock(json);
 			break;
 		case "text":
-			component = new Text(json);
+			component = new StaticText(json);
+			break;
+		case "nameday":
+			component = new Nameday(json);
 			break;
 		}
 

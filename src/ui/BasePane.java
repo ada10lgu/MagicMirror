@@ -35,7 +35,7 @@ public class BasePane extends JPanel implements Observer, ActionListener {
 	public void update(Observable arg0, Object arg1) {
 		removeAll();
 		for (Component component : model.getComponents()) {
-			add(MirrorComponent.create(component));
+			add(MirrorComponent.create(component,model));
 		}
 	}
 

@@ -1,30 +1,17 @@
 package model.component;
 
 import java.awt.Font;
-import java.util.Random;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Text extends Component {
-
-	private int index;
-	private Random rand = new Random();
+public abstract class Text extends Component {
 
 	public Text(JSONObject json) {
 		super(json);
 		verify(json, "data");
 		JSONObject data = json.getJSONObject("data");
 		verifyFont(data, "font");
-		verify(data, "text");
-		verify(data, "random");
-		verify(data, "delay");
 
-		index = -1;
-	}
-
-	public int getDelay() {
-		return json.getJSONObject("data").getInt("delay") * 1000;
 	}
 
 	public Font getFont() {
@@ -39,19 +26,5 @@ public class Text extends Component {
 		return "center";
 	}
 
-	public String getNext() {
-		JSONArray array = json.getJSONObject("data").getJSONArray("text");
-		if (array.length() == 0) {
-			return "";
-		}
-		boolean random = json.getJSONObject("data").getBoolean("random");
-		if (random) {
-			index = rand.nextInt(array.length());
-		} else {
-			index++;
-			index %= array.length();
-		}
-
-		return array.getString(index);
-	}
+	public abstract String getText();
 }

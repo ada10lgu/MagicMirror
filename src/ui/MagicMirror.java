@@ -36,16 +36,38 @@ public class MagicMirror extends JFrame {
 		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
 				cursorImg, new Point(0, 0), "blank cursor");
 		getContentPane().setCursor(blankCursor);
-		
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
 	public static void main(String[] args) {
 		File json = new File("settings.json");
+		boolean debug = false;
+		boolean help = false;
+		for (int i = 0; i < args.length; i++) {
+			switch (args[i]) {
+			case "-s":
+			case "--settings":
+				json = new File(args[++i]);
+				break;
+			case "-d":
+			case "--debug":
+				debug = true;
+				break;
+			case "-h":
+			case "?":
+			case "--help":
+				help = true;
+				break;
+			}
+		}
 
-		if (args.length > 0) {
-			json = new File(args[0]);
+		if (help) {
+			System.out.println("-d\t--debug\t\ttoggle debug");
+			System.out.println("-s\t--settings FILE\tspecify settings file");
+			System.out.println("-h\t--help\t\tThis message");
+			System.exit(0);
 		}
 
 		if (!json.exists()) {
@@ -55,7 +77,7 @@ public class MagicMirror extends JFrame {
 
 		MirrorModel model = null;
 		try {
-			model = new MirrorModel(json);
+			model = new MirrorModel(json, debug);
 		} catch (FileNotFoundException e) {
 			System.err.println("Could not read file");
 			System.exit(1);

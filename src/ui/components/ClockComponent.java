@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import model.MirrorModel;
 import model.component.Clock;
 
 @SuppressWarnings("serial")
@@ -18,8 +19,8 @@ public class ClockComponent extends MirrorComponent<Clock> {
 	private final String[] WEEKDAY = new String[] { "söndag", "måndag",
 			"tisdag", "onsdag", "torsdag", "fredag", "lördag" };
 
-	public ClockComponent(Clock component) {
-		super(component);
+	public ClockComponent(Clock component, MirrorModel model) {
+		super(component,model);
 	}
 
 	@Override
@@ -27,9 +28,7 @@ public class ClockComponent extends MirrorComponent<Clock> {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		g.setColor(BACKGROUND);
-		g.fillRect(0, 0, getWidth(), getHeight());
+	public void paintComponent(Graphics g) {
 		Font timeFont = component.getTimeFont();
 		Font dateFont = component.getDateFont();
 

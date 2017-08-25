@@ -19,14 +19,21 @@ public class MirrorModel extends Observable {
 
 	private File settings;
 	private TreeMap<String, Component> tree = new TreeMap<>();
+	private boolean debug;
 
-	public MirrorModel(File settings) throws FileNotFoundException {
+	public MirrorModel(File settings, boolean debug)
+			throws FileNotFoundException {
 		this.settings = settings;
+		this.debug = debug;
 		System.out.println("Loading components");
 		load();
 		System.out.printf("%d components read%n", tree.size());
 		for (String key : tree.keySet())
 			System.out.printf("\t%s%n", key);
+	}
+
+	public synchronized boolean isDebug() {
+		return debug;
 	}
 
 	public synchronized List<Component> getComponents() {

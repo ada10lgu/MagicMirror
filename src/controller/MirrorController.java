@@ -47,6 +47,7 @@ public class MirrorController extends Thread {
 				System.out.println("debug [true/false] \tchange debug state");
 				System.out.println("help \t\t\tdisplays this text");
 				System.out.println("exit \t\t\texit the program");
+				System.out.println("save \t\t\tsaves the config to file");
 				break;
 			case "exit":
 				break loop;

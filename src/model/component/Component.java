@@ -93,6 +93,10 @@ public class Component {
 		switch (component.getType()) {
 		case "clock":
 			component = new Clock(json);
+			break;
+		case "text":
+			component = new Text(json);
+			break;
 		}
 
 		return component;

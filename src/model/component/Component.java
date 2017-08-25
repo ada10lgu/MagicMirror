@@ -24,6 +24,10 @@ public class Component {
 
 	}
 
+	public JSONObject getJSON() {
+		return json;
+	}
+
 	public String getType() {
 		return json.getString("type").toLowerCase();
 	}

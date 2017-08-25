@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.Scanner;
 
 import model.MirrorModel;
@@ -19,9 +19,8 @@ public class MirrorController extends Thread {
 	@Override
 	public void run() {
 		Scanner scan = new Scanner(System.in);
-		while (scan.hasNext()) {
+		loop: while (scan.hasNext()) {
 			String[] row = scan.nextLine().trim().split("\\s+", 2);
-			System.out.println(Arrays.toString(row));
 			String command = row[0];
 			switch (command) {
 			case "debug":
@@ -35,6 +34,22 @@ public class MirrorController extends Thread {
 					System.err.println("debug [true/false]");
 				}
 				break;
+			case "save":
+				System.out.print("Saving to file...");
+				try {
+					model.save();
+				} catch (IOException e) {
+					System.err.println("failed");
+				}
+				System.out.println("saved!");
+				break;
+			case "help":
+				System.out.println("debug [true/false] \tchange debug state");
+				System.out.println("help \t\t\tdisplays this text");
+				System.out.println("exit \t\t\texit the program");
+				break;
+			case "exit":
+				break loop;
 			default:
 				System.err.println(UNKNOWN);
 			}

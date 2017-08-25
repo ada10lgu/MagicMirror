@@ -1,73 +1,77 @@
 [
-	{
-		"type": "clock",
-		"size": {
-			"w": 350,
-			"h": 200
-		},
-		"position": {
-			"x": 0,
-			"y": 0
-		},
-		"fonts": {
-			"time": {
-				"font": "Verdana",
-				"size": 100
-			},
-			"date": {
-				"font": "Verdana",
-				"size": 20
-			}
-		}
-	},
-	{
-		"type" : "nameday",
-		"size": {
-			"w": 350,
-			"h": 70
-		},
-		"position": {
-			"x": 0,
-			"y": -70
-		},
-		"data": {
-			"font": {
-				"font": "Verdana",
-				"size": 35
-			},
-			"allign": "center",
-			"api": "www.google.se"
-		},
-		"anchor": {
-			"x": "LEFT",
-			"y": "BOTTOM"
-		}
-	},
-	{
-		"type": "text",
-		"size": {
-			"w": 650,
-			"h": 150
-		},
-		"position": {
-			"x": -325,
-			"y": -75
-		},
-		"data": {
-			"font": {
-				"font": "Verdana",
-				"size": 100
-			},
-			"text": [
-				"ett","två","tre","fyra","fem"
-			],
-			"allign": "center",
-			"random": false,
-			"delay":1
-		},
-		"anchor": {
-			"x": "RIGHT/2",
-			"y": "BOTTOM/2"
-		}
-	}
+    {
+        "position": {
+            "y": 0,
+            "x": 0
+        },
+        "type": "clock",
+        "fonts": {
+            "time": {
+                "font": "Verdana",
+                "size": 100
+            },
+            "date": {
+                "font": "Verdana",
+                "size": 20
+            }
+        },
+        "size": {
+            "w": 350,
+            "h": 200
+        }
+    },
+    {
+        "position": {
+            "y": -70,
+            "x": 0
+        },
+        "data": {
+            "font": {
+                "font": "Verdana",
+                "size": 35
+            },
+            "allign": "center",
+            "api": "www.google.se"
+        },
+        "type": "nameday",
+        "size": {
+            "w": 350,
+            "h": 70
+        },
+        "anchor": {
+            "y": "BOTTOM",
+            "x": "LEFT"
+        }
+    },
+    {
+        "position": {
+            "y": -75,
+            "x": -325
+        },
+        "data": {
+            "text": [
+                "ett",
+                "två",
+                "tre",
+                "fyra",
+                "fem"
+            ],
+            "font": {
+                "font": "Verdana",
+                "size": 100
+            },
+            "random": false,
+            "allign": "center",
+            "delay": 1
+        },
+        "type": "text",
+        "size": {
+            "w": 650,
+            "h": 150
+        },
+        "anchor": {
+            "y": "BOTTOM/2",
+            "x": "RIGHT/2"
+        }
+    }
 ]

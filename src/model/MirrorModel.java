@@ -2,6 +2,8 @@ package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,8 +83,16 @@ public class MirrorModel extends Observable {
 		return new JSONArray(sb.toString());
 	}
 
-	public void save() {
-
+	public void save() throws IOException {
+		JSONArray array = new JSONArray();
+		for (String key : tree.keySet()) {
+			JSONObject json = tree.get(key).getJSON();
+			array.put(json);
+		}
+		FileWriter fw = new FileWriter(settings);
+		fw.write(array.toString(4));
+		fw.flush();
+		fw.close();
 	}
 
 }

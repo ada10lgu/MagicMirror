@@ -1,57 +1,48 @@
 package controller;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import model.MirrorModel;
+import controller.operators.DebugOperation;
+import controller.operators.ExitOperation;
+import controller.operators.HelpOperation;
+import controller.operators.ListOperation;
+import controller.operators.Operation;
+import controller.operators.SaveOperation;
 
 public class MirrorController extends Thread {
 
 	private static final String UNKNOWN = "Unknwon command";
 
-	private MirrorModel model;
+	private List<Operation> operations = new ArrayList<>();
 
 	public MirrorController(MirrorModel model) {
-		this.model = model;
+		operations.add(new HelpOperation(model, operations));
+		operations.add(new ExitOperation(model));
+		operations.add(new DebugOperation(model));
+		operations.add(new SaveOperation(model));
+		operations.add(new ListOperation(model));
 		start();
 	}
 
 	@Override
 	public void run() {
 		Scanner scan = new Scanner(System.in);
-		loop: while (scan.hasNext()) {
-			String[] row = scan.nextLine().trim().split("\\s+", 2);
+		while (scan.hasNext()) {
+			String input = scan.nextLine().trim();
+			String[] row = input.split("\\s+", 2);
 			String command = row[0];
-			switch (command) {
-			case "debug":
-				if (row.length == 1) {
-					System.out.printf("debug: %s%n", model.isDebug());
-				} else if (row[1].equalsIgnoreCase("true")) {
-					model.setDebug(true);
-				} else if (row[1].equalsIgnoreCase("false")) {
-					model.setDebug(false);
-				} else {
-					System.err.println("debug [true/false]");
+			String data = input.substring(command.length()).trim();
+			boolean found = false;
+			for (Operation o : operations) {
+				if (command.equals(o.getOperator())) {
+					found = true;
+					o.excetute(data);
 				}
-				break;
-			case "save":
-				System.out.print("Saving to file...");
-				try {
-					model.save();
-				} catch (IOException e) {
-					System.err.println("failed");
-				}
-				System.out.println("saved!");
-				break;
-			case "help":
-				System.out.println("debug [true/false] \tchange debug state");
-				System.out.println("help \t\t\tdisplays this text");
-				System.out.println("exit \t\t\texit the program");
-				System.out.println("save \t\t\tsaves the config to file");
-				break;
-			case "exit":
-				break loop;
-			default:
+			}
+			if (!found) {
 				System.err.println(UNKNOWN);
 			}
 		}

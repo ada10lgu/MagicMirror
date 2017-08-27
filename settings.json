@@ -17,7 +17,7 @@
         },
         "size": {
             "w": 350,
-            "h": 200
+            "h": 150
         }
     },
     {
@@ -30,7 +30,7 @@
                 "font": "Verdana",
                 "size": 35
             },
-            "allign": "center",
+            "allign": "left",
             "api": "www.google.se"
         },
         "type": "nameday",

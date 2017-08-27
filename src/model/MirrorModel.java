@@ -95,4 +95,8 @@ public class MirrorModel extends Observable {
 		fw.close();
 	}
 
+	public List<String> listComponents() {
+		return new ArrayList<>(tree.keySet());
+	}
+
 }

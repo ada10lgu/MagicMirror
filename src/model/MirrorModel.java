@@ -29,9 +29,7 @@ public class MirrorModel extends Observable {
 		this.debug = debug;
 		System.out.println("Loading components");
 		load();
-		System.out.printf("%d components read%n", tree.size());
-		for (String key : tree.keySet())
-			System.out.printf("\t%s%n", key);
+		System.out.printf(" %d components read%n", tree.size());
 	}
 
 	public synchronized boolean isDebug() {

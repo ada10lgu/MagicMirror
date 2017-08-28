@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import model.MirrorModel;
 import model.component.Clock;
 import model.component.Component;
+import model.component.House;
 import model.component.Text;
 
 @SuppressWarnings("serial")
@@ -73,6 +74,9 @@ public abstract class MirrorComponent<E extends Component> extends JPanel {
 		case "text":
 		case "nameday":
 			comp = new TextComponent((Text) component, model);
+			break;
+		case "house":
+			comp = new HouseComponent((House) component, model);
 			break;
 		default:
 			comp = new UnknownComponent(component, model);

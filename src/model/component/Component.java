@@ -104,6 +104,9 @@ public class Component {
 		case "nameday":
 			component = new Nameday(json);
 			break;
+		case "house":
+			component = new House(json);
+			break;
 		}
 
 		return component;

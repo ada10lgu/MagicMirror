@@ -1,4 +1,23 @@
 [
+	{
+		"type": "house",
+		"size": {
+            "w": 550,
+            "h": 350
+        },
+        "position": {
+            "y": 0,
+            "x": 400
+        },
+        "room": {
+        	"vardagsrum": {
+        		"x" : 0,
+        		"y" : 0,
+        		"w" : 10,
+        		"h" : 10
+        	}
+        }
+	},
     {
         "position": {
             "y": 0,

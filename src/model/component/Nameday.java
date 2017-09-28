@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Nameday extends Text {
@@ -42,13 +43,22 @@ public class Nameday extends Text {
 		String day = "" + c.get(Calendar.DAY_OF_MONTH);
 		String month = "" + c.get(Calendar.MONTH);
 
-		if (!nameday.has(month)) 
+		if (!nameday.has(month))
 			return "";
-		
+
 		JSONObject jsonMonth = nameday.getJSONObject(month);
-		System.out.println(jsonMonth);
-		
-		return "lars,lisa";
+
+		if (!jsonMonth.has(day))
+			return "";
+
+		JSONArray names = jsonMonth.getJSONArray(day);
+
+		String[] nameList = new String[names.length()];
+		for (int i = 0; i < names.length(); i++) {
+			nameList[i] = names.getString(i);
+		}
+
+		return String.join(",", nameList);
 	}
 
 }

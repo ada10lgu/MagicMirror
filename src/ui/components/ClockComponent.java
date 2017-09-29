@@ -45,8 +45,9 @@ public class ClockComponent extends MirrorComponent<Clock> {
 		String weekday = WEEKDAY[c.get(Calendar.DAY_OF_WEEK) - 1];
 		String day = "" + c.get(Calendar.DAY_OF_MONTH);
 		String month = MONTH[c.get(Calendar.MONTH)];
-		String date = String.format("%s %s %s", weekday, day, month);
-
+		String week = String.format("v%d", c.get(Calendar.WEEK_OF_YEAR));
+		String date = String.format("%s %s %s, %s", weekday, day, month,week);
+		
 		g.setColor(TEXT);
 		{
 			g.setFont(timeFont);

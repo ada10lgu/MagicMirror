@@ -53,12 +53,19 @@ public class Nameday extends Text {
 
 		JSONArray names = jsonMonth.getJSONArray(day);
 
-		String[] nameList = new String[names.length()];
-		for (int i = 0; i < names.length(); i++) {
-			nameList[i] = names.getString(i);
-		}
+		if (names.length() == 0)
+			return "";
 
-		return String.join(",", nameList);
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(names.get(0));
+		for (int i = 1; i < names.length(); i++) {
+			sb.append(", ");
+			sb.append(names.get(i));
+		}
+		
+		
+		return sb.toString();
 	}
 
 }

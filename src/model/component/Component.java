@@ -21,7 +21,6 @@ public class Component {
 		JSONObject position = json.getJSONObject("position");
 		verify(position, "x");
 		verify(position, "y");
-
 	}
 
 	public JSONObject getJSON() {

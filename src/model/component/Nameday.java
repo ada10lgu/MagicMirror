@@ -33,7 +33,6 @@ public class Nameday extends Text {
 		}
 
 		nameday = new JSONObject(sb.toString());
-		System.out.println(nameday);
 	}
 
 	@Override
@@ -63,8 +62,7 @@ public class Nameday extends Text {
 			sb.append(", ");
 			sb.append(names.get(i));
 		}
-		
-		
+
 		return sb.toString();
 	}
 

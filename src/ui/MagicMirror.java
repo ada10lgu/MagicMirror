@@ -45,7 +45,7 @@ public class MagicMirror extends JFrame {
 
 	public static void main(String[] args) {
 		File json = new File("settings.json");
-		boolean debug = true;
+		boolean debug = false;
 		boolean help = false;
 		for (int i = 0; i < args.length; i++) {
 			switch (args[i]) {

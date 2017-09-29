@@ -10,20 +10,18 @@ import org.json.JSONObject;
 
 public class Nameday extends Text {
 
-	private static final File NAMEDAY_FILE = new File("nameday.json");
-
 	private JSONObject nameday;
 
 	public Nameday(JSONObject json) {
 		super(json);
 		JSONObject data = json.getJSONObject("data");
-		verify(data, "api");
+		verify(data, "json");
 
 		StringBuilder sb = new StringBuilder();
 		Scanner s = null;
 
 		try {
-			s = new Scanner(NAMEDAY_FILE);
+			s = new Scanner(new File(data.getString("json")));
 			while (s.hasNext()) {
 				sb.append(s.nextLine());
 			}

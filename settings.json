@@ -50,7 +50,7 @@
                 "size": 35
             },
             "allign": "left",
-            "api": "www.google.se"
+            "json": "nameday.json"
         },
         "type": "nameday",
         "size": {

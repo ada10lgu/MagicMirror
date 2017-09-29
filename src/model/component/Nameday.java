@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Nameday extends Text {
@@ -19,9 +20,10 @@ public class Nameday extends Text {
 
 		StringBuilder sb = new StringBuilder();
 		Scanner s = null;
+		File f = new File(data.getString("json"));
 
 		try {
-			s = new Scanner(new File(data.getString("json")));
+			s = new Scanner(f);
 			while (s.hasNext()) {
 				sb.append(s.nextLine());
 			}
@@ -29,8 +31,12 @@ public class Nameday extends Text {
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException("Could not read nameday.json file");
 		}
-
-		nameday = new JSONObject(sb.toString());
+		try {
+			nameday = new JSONObject(sb.toString());
+		} catch (JSONException e) {
+			nameday = new JSONObject();
+			System.err.printf("Could not parse file, %s%n", f);
+		}
 	}
 
 	@Override

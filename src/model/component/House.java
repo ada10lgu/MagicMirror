@@ -39,13 +39,13 @@ public class House extends Component {
 				return getX();
 			return getX() + getW();
 		}
-		
+
 		private int top() {
 			if (getH() < 0)
 				return getY() - getH();
 			return getY();
 		}
-		
+
 		private int bottom() {
 			if (getH() < 0)
 				return getY();

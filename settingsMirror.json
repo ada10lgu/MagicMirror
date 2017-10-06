@@ -1,46 +1,65 @@
 [
-	{
-		"size": {
-			"w": 550,
-			"h": 350
-		},
-		"fonts": {
-			"date": {
-				"size": 25,
-				"font": "Verdana"
-			},
-			"time": {
-				"size": 125,
-				"font": "Verdana"
-			}
-		},
-		"position": {
-			"x": 0,
-			"y": 0
-		},
-		"type": "clock"
-	},
-	{
-		"position": {
-			"y": -200,
-			"x": -350
-		},
-		"data": {
-			"font": {
-				"font": "Verdana",
-				"size": 35
-			},
-			"allign": "left",
-			"json": "nameday.json"
-		},
-		"type": "nameday",
-		"size": {
-			"w": 350,
-			"h": 70
-		},
-		"anchor": {
-			"y": "BOTTOM",
-			"x": "RIGHT"
-		}
-	}
+    {
+        "position": {
+            "y": 85,
+            "x": 0
+        },
+        "type": "clock",
+        "fonts": {
+            "time": {
+                "font": "Verdana",
+                "size": 125
+            },
+            "date": {
+                "font": "Verdana",
+                "size": 25
+            }
+        },
+        "size": {
+            "w": 550,
+            "h": 180
+        }
+    },
+    {
+        "position": {
+            "y": 310,
+            "x": 0
+        },
+        "data": {
+            "json": "nameday.json",
+            "font": {
+                "font": "Verdana",
+                "size": 35
+            },
+            "allign": "center"
+        },
+        "type": "nameday",
+        "size": {
+            "w": 550,
+            "h": 70
+        }
+    },
+    {
+        "position": {
+            "y": 265,
+            "x": 0
+        },
+        "data": {
+            "text": [
+                "Dagens namnsdagsbarn"
+            ],
+            "font": {
+                "font": "Verdana",
+                "size": 25
+            },
+            "random": false,
+            "allign": "center",
+            "delay": 1
+        },
+        "type": "text",
+        "size": {
+            "w": 550,
+            "h": 45
+        }
+    }
 ]

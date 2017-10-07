@@ -18,7 +18,7 @@ public class BasePane extends JPanel implements Observer, ActionListener {
 
 	private MirrorModel model;
 
-	public BasePane(MirrorModel model) {
+	public BasePane(MirrorModel model, int width, int height) {
 		this.model = model;
 		setBackground(Color.BLACK);
 		setLayout(null);
@@ -35,7 +35,7 @@ public class BasePane extends JPanel implements Observer, ActionListener {
 	public void update(Observable arg0, Object arg1) {
 		removeAll();
 		for (Component component : model.getComponents()) {
-			add(MirrorComponent.create(component,model));
+			add(MirrorComponent.create(component, model));
 		}
 	}
 

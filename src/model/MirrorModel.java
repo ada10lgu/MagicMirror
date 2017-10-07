@@ -11,11 +11,11 @@ import java.util.Observable;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import model.component.Component;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import model.component.Component;
 
 public class MirrorModel extends Observable {
 
@@ -23,8 +23,7 @@ public class MirrorModel extends Observable {
 	private TreeMap<String, Component> tree = new TreeMap<>();
 	private boolean debug;
 
-	public MirrorModel(File settings, boolean debug)
-			throws FileNotFoundException {
+	public MirrorModel(File settings, boolean debug) throws FileNotFoundException {
 		this.settings = settings;
 		this.debug = debug;
 		System.out.println("Loading components");
@@ -64,8 +63,7 @@ public class MirrorModel extends Observable {
 				types.put(type, ++index);
 				tree.put(name, component);
 			} else {
-				throw new JSONException(
-						"Wrong structure, requires array of object");
+				throw new JSONException("Wrong structure, requires array of object");
 			}
 		}
 		this.tree = tree;
@@ -75,7 +73,7 @@ public class MirrorModel extends Observable {
 		Scanner s = new Scanner(settings);
 		StringBuilder sb = new StringBuilder();
 		while (s.hasNext()) {
-			sb.append(s.nextLine());
+			sb.append(s.nextLine()).append("\n");
 		}
 		s.close();
 		return new JSONArray(sb.toString());

@@ -106,6 +106,9 @@ public class Component {
 		case "house":
 			component = new House(json);
 			break;
+		case "weather":
+			component = new Weather(json);
+			break;
 		}
 
 		return component;

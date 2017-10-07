@@ -12,17 +12,15 @@ import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;
 
-import model.MirrorModel;
-
 import org.json.JSONException;
 
 import controller.MirrorController;
+import model.MirrorModel;
 
 @SuppressWarnings("serial")
 public class MagicMirror extends JFrame {
 
-	static GraphicsDevice device = GraphicsEnvironment
-			.getLocalGraphicsEnvironment().getScreenDevices()[0];
+	static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
 	public MagicMirror(MirrorModel model) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -30,13 +28,11 @@ public class MagicMirror extends JFrame {
 		int height = (int) screenSize.getHeight();
 		setSize(width, height);
 		setLocation(0, 0);
-		add(new BasePane(model));
+		add(new BasePane(model, width, height));
 		device.setFullScreenWindow(this);
 
-		BufferedImage cursorImg = new BufferedImage(16, 16,
-				BufferedImage.TYPE_INT_ARGB);
-		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
-				cursorImg, new Point(0, 0), "blank cursor");
+		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
 		getContentPane().setCursor(blankCursor);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -84,8 +80,7 @@ public class MagicMirror extends JFrame {
 			System.err.println("Could not read file");
 			System.exit(1);
 		} catch (JSONException e) {
-			System.err.println(String.format("Could not parse file (%s)",
-					e.getMessage()));
+			System.err.println(String.format("Could not parse file (%s)", e.getMessage()));
 			System.exit(1);
 		}
 

@@ -12,6 +12,7 @@ import model.component.Clock;
 import model.component.Component;
 import model.component.House;
 import model.component.Text;
+import model.component.Weather;
 
 @SuppressWarnings("serial")
 public abstract class MirrorComponent<E extends Component> extends JPanel {
@@ -64,8 +65,7 @@ public abstract class MirrorComponent<E extends Component> extends JPanel {
 
 	protected abstract void updateComponent();
 
-	public static MirrorComponent<?> create(Component component,
-			MirrorModel model) {
+	public static MirrorComponent<?> create(Component component, MirrorModel model) {
 		MirrorComponent<?> comp;
 		switch (component.getType()) {
 		case "clock":
@@ -77,6 +77,9 @@ public abstract class MirrorComponent<E extends Component> extends JPanel {
 			break;
 		case "house":
 			comp = new HouseComponent((House) component, model);
+			break;
+		case "weather":
+			comp = new WeatherComponent((Weather) component, model);
 			break;
 		default:
 			comp = new UnknownComponent(component, model);

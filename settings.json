@@ -2,95 +2,119 @@
 	{
 		"type": "house",
 		"size": {
-            "w": 550,
-            "h": 350
-        },
-        "position": {
-            "y": 0,
-            "x": 400
-        },
-        "room": {
-        	"vardagsrum": {
-        		"x" : 0,
-        		"y" : 0,
-        		"w" : 10,
-        		"h" : 10
-        	}
-        }
+			"w": 550,
+			"h": 350
+		},
+		"position": {
+			"y": 0,
+			"x": 400
+		},
+		"room": {
+			"vardagsrum": {
+				"x": 0,
+				"y": 0,
+				"w": 10,
+				"h": 10
+			}
+		}
 	},
-    {
-        "position": {
-            "y": 0,
-            "x": 0
-        },
-        "type": "clock",
-        "fonts": {
-            "time": {
-                "font": "Verdana",
-                "size": 100
-            },
-            "date": {
-                "font": "Verdana",
-                "size": 20
-            }
-        },
-        "size": {
-            "w": 350,
-            "h": 150
-        }
-    },
-    {
-        "position": {
-            "y": -70,
-            "x": 0
-        },
-        "data": {
-            "font": {
-                "font": "Verdana",
-                "size": 35
-            },
-            "allign": "left",
-            "json": "nameday.json"
-        },
-        "type": "nameday",
-        "size": {
-            "w": 350,
-            "h": 70
-        },
-        "anchor": {
-            "y": "BOTTOM",
-            "x": "LEFT"
-        }
-    },
-    {
-        "position": {
-            "y": -75,
-            "x": -325
-        },
-        "data": {
-            "text": [
-                "ett",
-                "två",
-                "tre",
-                "fyra",
-                "fem"
-            ],
-            "font": {
-                "font": "Verdana",
-                "size": 100
-            },
-            "random": false,
-            "allign": "center",
-            "delay": 1
-        },
-        "type": "text",
-        "size": {
-            "w": 650,
-            "h": 150
-        },
-        "anchor": {
-            "y": "BOTTOM/2",
-            "x": "RIGHT/2"
-        }
-    }
+	{
+		"position": {
+			"y": 0,
+			"x": 0
+		},
+		"type": "clock",
+		"fonts": {
+			"time": {
+				"font": "Verdana",
+				"size": 100
+			},
+			"date": {
+				"font": "Verdana",
+				"size": 20
+			}
+		},
+		"size": {
+			"w": 350,
+			"h": 150
+		}
+	},
+	{
+		"position": {
+			"y": -70,
+			"x": 0
+		},
+		"data": {
+			"font": {
+				"font": "Verdana",
+				"size": 35
+			},
+			"allign": "left",
+			"json": "nameday.json"
+		},
+		"type": "nameday",
+		"size": {
+			"w": 350,
+			"h": 70
+		},
+		"anchor": {
+			"y": "BOTTOM",
+			"x": "LEFT"
+		}
+	},
+	{
+		"position": {
+			"y": -75,
+			"x": -325
+		},
+		"data": {
+			"text": [
+				"ett",
+				"två",
+				"tre",
+				"fyra",
+				"fem"
+			],
+			"font": {
+				"font": "Verdana",
+				"size": 100
+			},
+			"random": false,
+			"allign": "center",
+			"delay": 1
+		},
+		"type": "text",
+		"size": {
+			"w": 650,
+			"h": 150
+		},
+		"anchor": {
+			"y": "BOTTOM/2",
+			"x": "RIGHT/2"
+		}
+	},
+	{
+		"position": {
+			"y": 0,
+			"x": -400
+		},
+		"data": {
+			"api": "http://api.openweathermap.org/data/2.5/weather",
+			"key": "appid=e07dd2e81d7099df840c3cd439a8bd10",
+			"town": "q=Lund",
+			"font": {
+				"font": "Verdana",
+				"size": 100
+			}
+		},
+		"type": "weather",
+		"size": {
+			"w": 400,
+			"h": 350
+		},
+		"anchor": {
+			"y": "TOP",
+			"x": "RIGHT"
+		}
+	}
 ]

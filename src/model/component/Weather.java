@@ -13,10 +13,12 @@ public class Weather extends Component implements APIModel {
 
 	public Weather(JSONObject json) {
 		super(json);
-
 		verify(json, "data");
 		JSONObject data = json.getJSONObject("data");
-		verifyFont(data, "font");
+		verify(data, "fonts");
+		JSONObject fonts = data.getJSONObject("fonts");
+		verifyFont(fonts, "main");
+		verifyFont(fonts, "data");
 
 		verify(data, "api");
 		verify(data, "key");
@@ -37,18 +39,38 @@ public class Weather extends Component implements APIModel {
 	@Override
 	public synchronized void presentData(String s) {
 		weather = new JSONObject(s);
+		// System.out.println(weather.toString(4));
+		// System.out.printf("Temp:\t%d%nSpeed:\t%d%nIcon:\t%s%n", getTemp(),
+		// getWindSpeed(), getIcon());
+		// System.out.println(getTown());
 	}
 
 	public synchronized int getTemp() {
-		return weather.getJSONObject("main").getInt("temp") - 273;
+		return (int) Math.round(weather.getJSONObject("main").getDouble("temp") - 273.15);
+	}
+
+	public synchronized int getWindSpeed() {
+		return (int) Math.round(weather.getJSONObject("wind").getDouble("speed"));
+	}
+
+	public String getIcon() {
+		return weather.getJSONArray("weather").getJSONObject(0).getString("icon");
+	}
+
+	public String getTown() {
+		return weather.getString("name");
 	}
 
 	public synchronized boolean hasData() {
 		return weather != null;
 	}
 
-	public Font getFont() {
-		return getFont(json.getJSONObject("data").getJSONObject("font"));
+	public Font getMainFont() {
+		return getFont(json.getJSONObject("data").getJSONObject("fonts").getJSONObject("main"));
+	}
+
+	public Font getDataFont() {
+		return getFont(json.getJSONObject("data").getJSONObject("fonts").getJSONObject("data"));
 	}
 
 }

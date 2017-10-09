@@ -95,16 +95,22 @@
 	},
 	{
 		"position": {
-			"y": 0,
-			"x": -400
+			"y": 20,
+			"x": -420
 		},
 		"data": {
 			"api": "http://api.openweathermap.org/data/2.5/weather",
 			"key": "appid=e07dd2e81d7099df840c3cd439a8bd10",
 			"town": "q=Lund",
-			"font": {
-				"font": "Verdana",
-				"size": 100
+			"fonts": {
+				"main": {
+					"font": "Verdana",
+					"size": 80
+				},
+				"data": {
+					"font": "Verdana",
+					"size": 20
+				}
 			}
 		},
 		"type": "weather",

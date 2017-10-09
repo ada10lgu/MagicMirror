@@ -1,65 +1,91 @@
 [
-    {
-        "position": {
-            "y": 85,
-            "x": 0
-        },
-        "type": "clock",
-        "fonts": {
-            "time": {
-                "font": "Verdana",
-                "size": 125
-            },
-            "date": {
-                "font": "Verdana",
-                "size": 25
-            }
-        },
-        "size": {
-            "w": 550,
-            "h": 180
-        }
-    },
-    {
-        "position": {
-            "y": 310,
-            "x": 0
-        },
-        "data": {
-            "json": "nameday.json",
-            "font": {
-                "font": "Verdana",
-                "size": 35
-            },
-            "allign": "center"
-        },
-        "type": "nameday",
-        "size": {
-            "w": 550,
-            "h": 70
-        }
-    },
-    {
-        "position": {
-            "y": 265,
-            "x": 0
-        },
-        "data": {
-            "text": [
-                "Dagens namnsdagsbarn"
-            ],
-            "font": {
-                "font": "Verdana",
-                "size": 25
-            },
-            "random": false,
-            "allign": "center",
-            "delay": 1
-        },
-        "type": "text",
-        "size": {
-            "w": 550,
-            "h": 45
-        }
-    }
+	{
+		"position": {
+			"y": 85,
+			"x": 0
+		},
+		"type": "clock",
+		"fonts": {
+			"time": {
+				"font": "Verdana",
+				"size": 125
+			},
+			"date": {
+				"font": "Verdana",
+				"size": 25
+			}
+		},
+		"size": {
+			"w": 550,
+			"h": 180
+		}
+	},
+	{
+		"position": {
+			"y": 310,
+			"x": 0
+		},
+		"data": {
+			"json": "nameday.json",
+			"font": {
+				"font": "Verdana",
+				"size": 35
+			},
+			"allign": "center"
+		},
+		"type": "nameday",
+		"size": {
+			"w": 550,
+			"h": 70
+		}
+	},
+	{
+		"position": {
+			"y": 265,
+			"x": 0
+		},
+		"data": {
+			"text": [
+				"Dagens namnsdagsbarn"
+			],
+			"font": {
+				"font": "Verdana",
+				"size": 25
+			},
+			"random": false,
+			"allign": "center",
+			"delay": 1
+		},
+		"type": "text",
+		"size": {
+			"w": 550,
+			"h": 45
+		}
+	},
+	{
+		"position": {
+			"y": 400,
+			"x": 0
+		},
+		"data": {
+			"api": "http://api.openweathermap.org/data/2.5/weather",
+			"key": "appid=e07dd2e81d7099df840c3cd439a8bd10",
+			"town": "q=Lund",
+			"fonts": {
+				"main": {
+					"font": "Verdana",
+					"size": 80
+				},
+				"data": {
+					"font": "Verdana",
+					"size": 20
+				}
+			}
+		},
+		"type": "weather",
+		"size": {
+			"w": 550,
+			"h": 80
+		}
+	}
 ]

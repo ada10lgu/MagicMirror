@@ -35,7 +35,7 @@ public class Nameday extends Text {
 			nameday = new JSONObject(sb.toString());
 		} catch (JSONException e) {
 			nameday = new JSONObject();
-			System.err.printf("Could not parse file, %s%n", f);
+			System.err.printf("Could not parse file, %s\nError: %s\n", f,e.getMessage());
 		}
 	}
 

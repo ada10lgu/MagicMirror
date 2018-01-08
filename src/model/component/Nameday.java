@@ -25,7 +25,7 @@ public class Nameday extends Text {
 		try {
 			s = new Scanner(f);
 			while (s.hasNext()) {
-				sb.append(s.nextLine());
+				sb.append(s.nextLine()).append("\n");
 			}
 			s.close();
 		} catch (FileNotFoundException e) {

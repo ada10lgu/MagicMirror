@@ -37,7 +37,7 @@ public class WeatherComponent extends MirrorComponent<Weather> {
 			int textHeight = fmMain.getHeight() + fmData.getHeight();
 			int topPadding = getHeight() / 2 - textHeight / 2;
 
-			String temp = String.format("%d°C", component.getTemp());
+			String temp = String.format("%dÂ°C", component.getTemp());
 			String wind = String.format("%d m/s", component.getWindSpeed());
 			String town = component.getTown();
 			String data = String.format("%s %s", town, wind);

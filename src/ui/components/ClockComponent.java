@@ -16,8 +16,8 @@ public class ClockComponent extends MirrorComponent<Clock> {
 	private final String[] MONTH = new String[] { "januari", "februari",
 			"mars", "april", "maj", "juni", "juli", "augusti", "september",
 			"oktober", "november", "december" };
-	private final String[] WEEKDAY = new String[] { "söndag", "måndag",
-			"tisdag", "onsdag", "torsdag", "fredag", "lördag" };
+	private final String[] WEEKDAY = new String[] { "sÃ¶ndag", "mÃ¥ndag",
+			"tisdag", "onsdag", "torsdag", "fredag", "lÃ¶rdag" };
 
 	public ClockComponent(Clock component, MirrorModel model) {
 		super(component,model);

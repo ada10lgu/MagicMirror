@@ -1,0 +1,9 @@
+{
+  "server": {
+    "port": 55555,
+    "session": "347cd581-e077-4357-95f5-2d27292f0f53",
+    "host": "http://192.168.1.2",
+    "username": "brulee"
+  },
+  "screen": {}
+}

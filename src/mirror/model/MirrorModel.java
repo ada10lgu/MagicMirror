@@ -2,7 +2,9 @@ package mirror.model;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,15 +15,13 @@ import mirror.controller.LoginController;
 import mirror.model.api.API;
 import mirror.model.api.APIRequest;
 import mirror.model.api.APIResponse;
-import mirror.model.resource.Door;
 import mirror.model.resource.Resource;
 
 public class MirrorModel {
 
 	private Config config;
-	private Map<UUID,Resource> resources;
-	
-	
+	private Map<UUID, Resource> resources;
+
 	public MirrorModel(Config config) {
 		this.config = config;
 		resources = new HashMap<>();
@@ -84,20 +84,54 @@ public class MirrorModel {
 	}
 
 	public void loadResources() {
-		System.out.println("Loading resources:");
-		JSONObject serverInfo = config.getServerSettings();
-		APIRequest resourceRequest = new APIRequest(serverInfo, Constants.RESOURCES_PATH);
-		APIResponse resourceResponse = API.request(resourceRequest);
-		JSONObject data = new JSONObject(resourceResponse.getBody());
-		
-		if (data.has("doors")) {
-			JSONArray list = data.getJSONArray("doors");
-			for (int i = 0; i < list.length(); i++) {
-				Door door = new Door(list.getJSONObject(i));
-				resources.put(door.getID(), door);
+		System.out.println("Loading remote resources:");
+		{
+			JSONObject serverInfo = config.getServerSettings();
+			APIRequest resourceRequest = new APIRequest(serverInfo, Constants.RESOURCES_PATH);
+			APIResponse resourceResponse = API.request(resourceRequest);
+			JSONObject data = new JSONObject(resourceResponse.getBody());
+
+			if (data.has("doors")) {
+				JSONArray list = data.getJSONArray("doors");
+				for (int i = 0; i < list.length(); i++) {
+					JSONObject comp = list.getJSONObject(i);
+					comp.put("type", "door");
+					Resource r = Resource.create(comp);
+					resources.put(r.getID(), r);
+				}
+				System.out.printf(" %d door(s) loaded.\n", list.length());
 			}
-			System.out.printf(" %d door(s) loaded.\n",list.length());
 		}
+		System.out.println("Loading local resources:");
+		{
+			Map<String, Integer> loaded = new HashMap<>();
+			JSONArray data = config.getComponents();
+			for (int i = 0; i < data.length(); i++) {
+				JSONObject comp = data.getJSONObject(i);
+				if (!comp.has("id")) {
+					comp.put("id", UUID.randomUUID().toString());
+				}
+				Resource r = Resource.create(comp);
+				resources.put(r.getID(), r);
+				Integer n = loaded.get(r.getType());
+				if (n == null)
+					n = 0;
+				n++;
+				loaded.put(r.getType(), n);
+			}
+
+			for (String key : loaded.keySet()) {
+				System.out.printf(" %d %s(s) loaded.\n", loaded.get(key), key);
+			}
+		}
+	}
+
+	public List<Resource> getResources() {
+		List<Resource> resources = new ArrayList<>();
+		for (UUID id : this.resources.keySet()) {
+			resources.add(this.resources.get(id));
+		}
+		return resources;
 	}
 
 }

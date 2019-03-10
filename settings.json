@@ -1,9 +1,22 @@
 {
   "server": {
     "port": 55555,
-    "session": "347cd581-e077-4357-95f5-2d27292f0f53",
+    "session": "0efe6c02-5ab8-47e9-ae45-d8e744137616",
     "host": "http://192.168.1.2",
     "username": "brulee"
   },
-  "screen": {}
+  "components": [{
+    "id": "038f66cf-30fe-4527-8546-a1c04c316bec",
+    "type": "clock"
+  }],
+  "screen": {
+    "preferedScreen": 0,
+    "debug": false,
+    "bounds": {
+      "r": 0,
+      "d": 0,
+      "u": 0,
+      "l": 0
+    }
+  }
 }

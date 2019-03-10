@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Config {
@@ -18,7 +19,6 @@ public class Config {
 
 	public Config(String filename) {
 		file = new File(filename);
-
 	}
 
 	public void load() throws IOException {
@@ -40,9 +40,17 @@ public class Config {
 		writer.flush();
 		writer.close();
 	}
-	
+
 	public JSONObject getServerSettings() {
 		return data.getJSONObject("server");
+	}
+
+	public JSONObject getGUISettings() {
+		return data.getJSONObject("screen");
+	}
+
+	public JSONArray getComponents() {
+		return data.getJSONArray("components");
 	}
 
 }

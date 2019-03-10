@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 import mirror.controller.LoginController;
+import mirror.gui.MirrorGUI;
 import mirror.model.Config;
 import mirror.model.MirrorModel;
 
@@ -20,15 +21,17 @@ public class MagicMirror {
 			MirrorModel model = new MirrorModel(config);
 			LoginController loginController = new LoginController(config);
 			if (model.login(loginController)) {
-				System.out.printf("Logged in to %s\n",config.getServerSettings().getString("host"));
+				System.out.printf("Logged in to %s\n", config.getServerSettings().getString("host"));
 			} else {
 				System.err.println("Error logging in!");
 				System.exit(3);
 			}
-			
-			model.loadResources();
-			
 
+			model.loadResources();
+
+			new MirrorGUI(config,model);
+
+			config.save();
 		} catch (IOException e) {
 			System.err.printf("Could not load config file '%s'", file);
 			System.exit(1);

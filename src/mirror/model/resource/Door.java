@@ -7,6 +7,7 @@ import mirror.model.Config;
 public class Door extends APIResource {
 
 	private boolean open;
+	private String name;
 
 	public Door(JSONObject data, Config config) {
 		super(data, config);
@@ -16,9 +17,15 @@ public class Door extends APIResource {
 	@Override
 	protected void update(JSONObject response) {
 		open = response.getBoolean("open");
+		name = response.getString("name");
 	}
 
 	public boolean isOpend() {
 		return open;
+	}
+
+	@Override
+	public String getInfo() {
+		return name;
 	}
 }

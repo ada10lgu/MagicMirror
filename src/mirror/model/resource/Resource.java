@@ -54,6 +54,8 @@ public abstract class Resource {
 		}
 	}
 
+	public abstract String getInfo();
+
 	public static Resource create(JSONObject comp, Config config) {
 		switch (comp.getString("type")) {
 		case "door":

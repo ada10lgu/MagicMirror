@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 import mirror.controller.LoginController;
+import mirror.gui.ImageLoader;
 import mirror.gui.MirrorGUI;
 import mirror.model.Config;
 import mirror.model.MirrorModel;
@@ -29,7 +30,10 @@ public class MagicMirror {
 
 			model.loadResources();
 
-			new MirrorGUI(config, model);
+			ImageLoader imageLoader = new ImageLoader(config);
+			imageLoader.load();
+
+			new MirrorGUI(config, model, imageLoader);
 
 			config.save();
 		} catch (IOException e) {

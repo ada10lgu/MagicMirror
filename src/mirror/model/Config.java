@@ -66,4 +66,8 @@ public class Config {
 		}
 		return data.getBoolean("verbose");
 	}
+
+	public File getImagePath() {
+		return new File(data.getString("images"));
+	}
 }

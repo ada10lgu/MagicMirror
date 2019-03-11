@@ -8,10 +8,9 @@ public class Door extends APIResource {
 
 	private boolean open;
 
-	
 	public Door(JSONObject data, Config config) {
 		super(data, config);
-		start(5);
+		start(1);
 	}
 
 	@Override

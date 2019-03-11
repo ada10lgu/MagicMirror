@@ -32,6 +32,7 @@
       }
     }
   ],
+  "images": "img",
   "debug": true,
   "screen": {
     "preferedScreen": 0,

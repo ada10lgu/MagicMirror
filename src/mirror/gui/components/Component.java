@@ -7,8 +7,10 @@ import java.awt.Graphics2D;
 
 import javax.swing.JComponent;
 
+import mirror.gui.ImageLoader;
 import mirror.model.Config;
 import mirror.model.resource.Clock;
+import mirror.model.resource.Door;
 import mirror.model.resource.Resource;
 
 @SuppressWarnings("serial")
@@ -26,12 +28,15 @@ public abstract class Component<E extends Resource> extends JComponent {
 		this.config = config;
 	}
 
-	public static Component<?> create(Resource r, Config config) {
+	public static Component<?> create(Resource r, Config config, ImageLoader imageLoader) {
 
 		switch (r.getType()) {
 		case "clock":
 			Clock c = (Clock) r;
 			return new ClockComponent(c, config);
+		case "door":
+			Door d = (Door) r;
+			return new DoorComponent(d, config, imageLoader);
 		default:
 			System.out.printf("Missing graphics for type %s\n", r.getType());
 			return new UnknownComponent(r, config);

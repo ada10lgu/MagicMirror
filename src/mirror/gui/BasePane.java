@@ -20,10 +20,12 @@ public class BasePane extends JPanel implements ActionListener {
 	private JPanel panel;
 	private Config config;
 	private MirrorModel model;
+	private ImageLoader imageLoader;
 
-	public BasePane(MirrorModel model, Config config) {
+	public BasePane(MirrorModel model, Config config, ImageLoader imageLoader) {
 		this.model = model;
 		this.config = config;
+		this.imageLoader = imageLoader;
 
 		setBackground(Component.BACKGROUND);
 		setLayout(null);
@@ -54,7 +56,7 @@ public class BasePane extends JPanel implements ActionListener {
 
 	private void loadComponents() {
 		for (Resource r : model.getResources()) {
-			Component<?> comp = Component.create(r, config);
+			Component<?> comp = Component.create(r, config, imageLoader);
 			comp.setBounds(0, 0, 10, 10);
 			panel.add(comp);
 		}

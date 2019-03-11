@@ -18,7 +18,7 @@ import mirror.model.MirrorModel;
 @SuppressWarnings("serial")
 public class MirrorGUI extends JFrame {
 
-	public MirrorGUI(Config config, MirrorModel model) {
+	public MirrorGUI(Config config, MirrorModel model, ImageLoader imageLoader) {
 		System.out.println("Loading UI");
 		JSONObject settings = config.getGUISettings();
 		int preferedScreen = settings.has("preferedScreen") ? settings.getInt("preferedScreen") : 0;
@@ -47,7 +47,7 @@ public class MirrorGUI extends JFrame {
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		add(new BasePane(model,config));
+		add(new BasePane(model, config, imageLoader));
 
 		setVisible(true);
 	}

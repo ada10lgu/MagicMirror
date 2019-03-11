@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import org.json.JSONObject;
 
+import mirror.model.Config;
+
 public abstract class Resource {
 
 	protected JSONObject data;
@@ -46,20 +48,20 @@ public abstract class Resource {
 		return data.has("remote") ? data.getBoolean("remote") : false;
 	}
 
-	public static Resource create(JSONObject comp) {
+	public void updateRemoteData(JSONObject data) {
+		for (String key : data.keySet()) {
+			data.put(key, data.get(key));
+		}
+	}
+
+	public static Resource create(JSONObject comp, Config config) {
 		switch (comp.getString("type")) {
 		case "door":
-			return new Door(comp);
+			return new Door(comp, config);
 		case "clock":
 			return new Clock(comp);
 		default:
 			throw new IllegalArgumentException(comp.toString());
-		}
-	}
-
-	public void updateRemoteData(JSONObject data) {
-		for (String key : data.keySet()) {
-			data.put(key, data.get(key));
 		}
 	}
 }

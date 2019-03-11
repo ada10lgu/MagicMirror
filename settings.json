@@ -1,7 +1,7 @@
 {
   "server": {
     "port": 55555,
-    "session": "5977c1ad-114f-44df-adff-b35ef3a4f03f",
+    "session": "fd474b93-f12c-4438-b50d-e4b7660edc13",
     "host": "http://192.168.1.2",
     "username": "brulee"
   },
@@ -19,8 +19,9 @@
       }
     },
     {
-      "name": "Front door",
-      "id": "5aec93e7-3b47-4dd6-bb76-bec049177a85",
+      "path": "/door/b6e57e52-29cc-4ec3-ae00-a8f65e23d548",
+      "comment": "Front door",
+      "id": "b6e57e52-29cc-4ec3-ae00-a8f65e23d548",
       "type": "door",
       "remote": true,
       "dimension": {
@@ -28,8 +29,7 @@
         "x": 0,
         "h": 100,
         "y": 0
-      },
-      "open": false
+      }
     }
   ],
   "debug": true,

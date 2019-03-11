@@ -95,7 +95,7 @@ public class MirrorModel {
 				if (!comp.has("id")) {
 					comp.put("id", UUID.randomUUID().toString());
 				}
-				Resource r = Resource.create(comp);
+				Resource r = Resource.create(comp,config);
 
 				if (r.isRemote()) {
 					remote.put(r.getID(), r);
@@ -129,7 +129,7 @@ public class MirrorModel {
 						old.updateRemoteData(comp);
 						local.put(old.getID(), old);
 					} else {
-						Resource r = Resource.create(comp);
+						Resource r = Resource.create(comp,config);
 						config.getComponents().put(comp);
 						local.put(r.getID(), r);
 					}

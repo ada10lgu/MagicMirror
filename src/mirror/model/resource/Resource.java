@@ -1,6 +1,10 @@
 package mirror.model.resource;
 
 import java.awt.Rectangle;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.json.JSONObject;
@@ -64,6 +68,38 @@ public abstract class Resource {
 			return new Clock(comp);
 		default:
 			throw new IllegalArgumentException(comp.toString());
+		}
+	}
+
+	public List<String> getActions() {
+		List<String> actions = new ArrayList<>();
+
+		for (Method method : getClass().getMethods()) {
+			ResourceAction[] list = method.getAnnotationsByType(ResourceAction.class);
+			for (ResourceAction item : list) {
+				actions.add(item.name());
+			}
+		}
+
+		return actions;
+	}
+
+	public void performAction(String string) {
+		for (Method method : getClass().getMethods()) {
+			ResourceAction[] list = method.getAnnotationsByType(ResourceAction.class);
+			for (ResourceAction item : list) {
+				if (item.name().equalsIgnoreCase(string)) {
+					try {
+						method.invoke(this);
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					} catch (IllegalArgumentException e) {
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 	}
 }

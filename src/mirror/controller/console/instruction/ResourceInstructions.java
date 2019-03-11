@@ -1,5 +1,7 @@
 package mirror.controller.console.instruction;
 
+import java.util.List;
+
 import mirror.model.MirrorModel;
 import mirror.model.resource.Resource;
 
@@ -12,16 +14,39 @@ public class ResourceInstructions extends Instruction {
 	@Override
 	public void execute(String instruction, String load, String[] data) {
 		if (load.isEmpty()) {
-			printComponents();
+			int i = 0;
+			for (Resource r : model.getResources()) {
+				System.out.printf("%d: %s (%s)\n", i, r.getInfo(), r.getType());
+				i++;
+			}
+			return;
 		}
-	}
 
-	private void printComponents() {
 		int i = 0;
-		for (Resource r : model.getResources()) {
-			System.out.printf("%d: %s (%s)\n", i, r.getInfo(), r.getType());
-			i++;
+		try {
+			i = Integer.parseInt(data[1]);
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid index");
+			return;
 		}
+
+		Resource r = model.getResources().get(i);
+
+		if (data.length == 2) {
+			List<String> actions = r.getActions();
+			if (actions.isEmpty()) {
+				System.out.println("No actions exists for the resource.");
+			} else {
+				System.out.println("The following actions are available:");
+				for (String s : actions) {
+					System.out.printf(" %s\n", s);
+				}
+			}
+			return;
+		}
+
+		r.performAction(load.split("\\s+", 2)[1]);
+
 	}
 
 	@Override

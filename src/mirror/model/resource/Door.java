@@ -28,4 +28,15 @@ public class Door extends APIResource {
 	public String getInfo() {
 		return name;
 	}
+
+	@ResourceAction(name = "status")
+	public void status() {
+		System.out.printf("%s\nIt is %s\n", name, open ? "open" : "closed");
+	}
+
+	@ResourceAction(name = "open")
+	public void open() {
+		System.out.println("Opening door");
+	}
+
 }

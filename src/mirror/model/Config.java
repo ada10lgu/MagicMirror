@@ -53,4 +53,17 @@ public class Config {
 		return data.getJSONArray("components");
 	}
 
+	public boolean isDebug() {
+		if (!data.has("debug")) {
+			data.put("debug", false);
+		}
+		return data.getBoolean("debug");
+	}
+
+	public boolean isVerbose() {
+		if (!data.has("vebose")) {
+			data.put("verbose", false);
+		}
+		return data.getBoolean("verbose");
+	}
 }

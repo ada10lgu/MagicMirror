@@ -84,8 +84,32 @@ public class MirrorModel {
 	}
 
 	public void loadResources() {
-		System.out.println("Loading remote resources:");
+		System.out.println("Loading localy stored resources:");
+		Map<UUID, Resource> local = new HashMap<>();
+		Map<UUID, Resource> remote = new HashMap<>();
 		{
+
+			JSONArray data = config.getComponents();
+			for (int i = 0; i < data.length(); i++) {
+				JSONObject comp = data.getJSONObject(i);
+				if (!comp.has("id")) {
+					comp.put("id", UUID.randomUUID().toString());
+				}
+				Resource r = Resource.create(comp);
+
+				if (r.isRemote()) {
+					remote.put(r.getID(), r);
+				} else {
+					local.put(r.getID(), r);
+				}
+			}
+		}
+
+		System.out.printf(" %d local resources found\n", local.size());
+		System.out.printf(" %d remote resource references found\n", remote.size());
+
+		{
+			System.out.println("Loading remote resources");
 			JSONObject serverInfo = config.getServerSettings();
 			APIRequest resourceRequest = new APIRequest(serverInfo, Constants.RESOURCES_PATH);
 			APIResponse resourceResponse = API.request(resourceRequest);
@@ -96,34 +120,41 @@ public class MirrorModel {
 				for (int i = 0; i < list.length(); i++) {
 					JSONObject comp = list.getJSONObject(i);
 					comp.put("type", "door");
-					Resource r = Resource.create(comp);
-					resources.put(r.getID(), r);
+					comp.put("remote", true);
+
+					UUID id = UUID.fromString(comp.getString("id"));
+
+					if (remote.containsKey(id)) {
+						Resource old = remote.remove(id);
+						old.updateRemoteData(comp);
+						local.put(old.getID(), old);
+					} else {
+						Resource r = Resource.create(comp);
+						config.getComponents().put(comp);
+						local.put(r.getID(), r);
+					}
 				}
 				System.out.printf(" %d door(s) loaded.\n", list.length());
 			}
+			System.out.println("Load done");
+			System.out.printf(" %d resources loaded\n", local.size());
+			System.out.printf(" %d remote resource expired\n", remote.size());
 		}
-		System.out.println("Loading local resources:");
 		{
-			Map<String, Integer> loaded = new HashMap<>();
-			JSONArray data = config.getComponents();
-			for (int i = 0; i < data.length(); i++) {
-				JSONObject comp = data.getJSONObject(i);
-				if (!comp.has("id")) {
-					comp.put("id", UUID.randomUUID().toString());
-				}
-				Resource r = Resource.create(comp);
-				resources.put(r.getID(), r);
-				Integer n = loaded.get(r.getType());
-				if (n == null)
-					n = 0;
-				n++;
-				loaded.put(r.getType(), n);
-			}
+			for (UUID id : remote.keySet()) {
 
-			for (String key : loaded.keySet()) {
-				System.out.printf(" %d %s(s) loaded.\n", loaded.get(key), key);
+				JSONArray data = config.getComponents();
+				for (int i = 0; i < data.length(); i++) {
+					JSONObject comp = data.getJSONObject(i);
+					if (id.equals(UUID.fromString(comp.getString("id")))) {
+						data.remove(i);
+						break;
+					}
+
+				}
 			}
 		}
+		resources.putAll(local);
 	}
 
 	public List<Resource> getResources() {

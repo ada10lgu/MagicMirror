@@ -1,22 +1,47 @@
 {
   "server": {
     "port": 55555,
-    "session": "0efe6c02-5ab8-47e9-ae45-d8e744137616",
+    "session": "5977c1ad-114f-44df-adff-b35ef3a4f03f",
     "host": "http://192.168.1.2",
     "username": "brulee"
   },
-  "components": [{
-    "id": "038f66cf-30fe-4527-8546-a1c04c316bec",
-    "type": "clock"
-  }],
+  "components": [
+    {
+      "timeSize": 20,
+      "dateSize": 15,
+      "id": "038f66cf-30fe-4527-8546-a1c04c316bec",
+      "type": "clock",
+      "dimension": {
+        "w": 100,
+        "x": 200,
+        "h": 200,
+        "y": 0
+      }
+    },
+    {
+      "name": "Front door",
+      "id": "5aec93e7-3b47-4dd6-bb76-bec049177a85",
+      "type": "door",
+      "remote": true,
+      "dimension": {
+        "w": 100,
+        "x": 0,
+        "h": 100,
+        "y": 0
+      },
+      "open": false
+    }
+  ],
+  "debug": true,
   "screen": {
     "preferedScreen": 0,
-    "debug": false,
     "bounds": {
-      "r": 0,
-      "d": 0,
-      "u": 0,
-      "l": 0
-    }
-  }
+      "r": 5,
+      "b": 5,
+      "t": 5,
+      "l": 5
+    },
+    "font": "verdana"
+  },
+  "verbose": true
 }

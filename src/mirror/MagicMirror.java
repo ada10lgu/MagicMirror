@@ -21,7 +21,7 @@ public class MagicMirror {
 			MirrorModel model = new MirrorModel(config);
 			LoginController loginController = new LoginController(config);
 			if (model.login(loginController)) {
-				System.out.printf("Logged in to %s\n", config.getServerSettings().getString("host"));
+				System.out.printf("Connected to %s\n", config.getServerSettings().getString("host"));
 			} else {
 				System.err.println("Error logging in!");
 				System.exit(3);
@@ -29,7 +29,7 @@ public class MagicMirror {
 
 			model.loadResources();
 
-			new MirrorGUI(config,model);
+			new MirrorGUI(config, model);
 
 			config.save();
 		} catch (IOException e) {

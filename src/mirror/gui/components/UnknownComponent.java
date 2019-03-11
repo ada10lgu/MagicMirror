@@ -17,6 +17,5 @@ public class UnknownComponent extends Component<Resource> {
 		g.setColor(TEXT);
 		g.fillRect(10, 10, 20, 20);
 	}
-	
 
 }

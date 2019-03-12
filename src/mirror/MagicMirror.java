@@ -35,8 +35,8 @@ public class MagicMirror {
 			imageLoader.load();
 
 			new ConsoleController(model);
-			
-			//new MirrorGUI(config, model, imageLoader);
+
+			new MirrorGUI(config, model, imageLoader);
 
 			config.save();
 		} catch (IOException e) {

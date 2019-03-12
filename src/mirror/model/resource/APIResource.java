@@ -19,11 +19,11 @@ public abstract class APIResource extends Resource {
 		this.config = config;
 	}
 
-	private String getData() {
+	private APIResponse getData() {
 		String path = data.getString("path");
 		APIRequest request = new APIRequest(config.getServerSettings(), path);
 		APIResponse response = API.request(request);
-		return response.getBody();
+		return response;
 	}
 
 	protected abstract void update(JSONObject response);
@@ -34,9 +34,17 @@ public abstract class APIResource extends Resource {
 
 			@Override
 			public void run() {
-				String data = getData();
-				JSONObject obj = new JSONObject(data);
-				update(obj);
+				APIResponse response = getData();
+				if (response.getCode() == 200) {
+					String data = response.getBody();
+					JSONObject obj = null;
+					if (data != null) {
+						obj = new JSONObject(data);
+					}
+					update(obj);
+				} else {
+					System.out.printf("Error when fetching data (%d)\n", response.getCode());
+				}
 			}
 		};
 
@@ -58,9 +66,17 @@ public abstract class APIResource extends Resource {
 			@Override
 			public void run() {
 				while (APIResource.this.isRunning()) {
-					String data = getData();
-					JSONObject obj = new JSONObject(data);
-					update(obj);
+					APIResponse response = getData();
+					if (response.getCode() == 200) {
+						String data = response.getBody();
+						JSONObject obj = null;
+						if (data != null) {
+							obj = new JSONObject(data);
+						}
+						update(obj);
+					} else {
+						System.out.printf("Error when fetching data (%d)\n", response.getCode());
+					}
 					try {
 						Thread.sleep(delay * 1000);
 					} catch (InterruptedException e) {

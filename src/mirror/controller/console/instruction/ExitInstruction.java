@@ -16,7 +16,7 @@ public class ExitInstruction extends Instruction {
 
 	@Override
 	public String[] getOperator() {
-		return new String[] { "quit", "exit", "stop" };
+		return new String[] { "quit", "exit", "stop", "q" };
 	}
 
 	@Override

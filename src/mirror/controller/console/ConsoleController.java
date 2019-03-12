@@ -18,14 +18,15 @@ public class ConsoleController extends Thread {
 
 		instructions.add(new ExitInstruction(model));
 		instructions.add(new ResourceInstructions(model));
-		
+
 		start();
 	}
 
 	@Override
 	public void run() {
+		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
-		while (scan.hasNext()) {
+		while (true) {
 			String line = scan.nextLine();
 			String inst = line.split("\\s+")[0];
 			for (Instruction instruction : instructions) {
@@ -35,9 +36,6 @@ public class ConsoleController extends Thread {
 				}
 			}
 		}
-		scan.close();
-		System.out.println("Closing system...");
-		System.exit(0);
 	}
 
 }

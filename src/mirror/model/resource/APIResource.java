@@ -43,7 +43,7 @@ public abstract class APIResource extends Resource {
 					}
 					update(obj);
 				} else {
-					System.out.printf("Error when fetching data (%d)\n", response.getCode());
+					System.out.printf("Error when fetching data (code:%d) (type:%s)\n", response.getCode(), getType());
 				}
 			}
 		};
@@ -56,7 +56,8 @@ public abstract class APIResource extends Resource {
 	 * @param time
 	 *            seconds between update
 	 */
-	public synchronized void start(long time) {
+	public synchronized void start() {
+		long time = getPeriod();
 		if (running)
 			return;
 		running = true;
@@ -65,6 +66,11 @@ public abstract class APIResource extends Resource {
 
 			@Override
 			public void run() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
 				while (APIResource.this.isRunning()) {
 					APIResponse response = getData();
 					if (response.getCode() == 200) {
@@ -75,7 +81,8 @@ public abstract class APIResource extends Resource {
 						}
 						update(obj);
 					} else {
-						System.out.printf("Error when fetching data (%d)\n", response.getCode());
+						System.out.printf("Error when fetching data (code:%d) (type:%s)\n", response.getCode(),
+								getType());
 					}
 					try {
 						Thread.sleep(delay * 1000);
@@ -95,5 +102,7 @@ public abstract class APIResource extends Resource {
 	private synchronized boolean isRunning() {
 		return running;
 	}
+	
+	protected abstract int getPeriod();
 
 }

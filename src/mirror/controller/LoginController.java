@@ -19,9 +19,9 @@ public class LoginController {
 
 	public String login(String challenge) throws NoSuchAlgorithmException {
 		System.out.printf("Enter password for user %s:", data.getString("username"));
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		String password = scanner.next();
-		scanner.close();
 		String hash = sha256(password);
 		hash = sha256(hash + challenge);
 		return hash;

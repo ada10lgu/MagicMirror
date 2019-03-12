@@ -13,7 +13,6 @@ public class Door extends APIResource {
 
 	public Door(JSONObject data, Config config) {
 		super(data, config);
-		start(1);
 	}
 
 	@Override
@@ -22,7 +21,7 @@ public class Door extends APIResource {
 	}
 
 	public boolean isOpend() {
-		return info.has("open") ? info.getBoolean("open") : false;
+		return info != null && info.has("open") ? info.getBoolean("open") : false;
 	}
 
 	@Override
@@ -44,6 +43,7 @@ public class Door extends APIResource {
 
 		String path = data.getString("path");
 		String body = payload.toString();
+
 		APIRequest request = new APIRequest(config.getServerSettings(), path, "PUT", body);
 		APIResponse response = API.request(request);
 
@@ -51,6 +51,11 @@ public class Door extends APIResource {
 			System.out.println("Door opend!");
 		else
 			System.out.println("error...");
+	}
+
+	@Override
+	protected int getPeriod() {
+		return 1;
 	}
 
 }

@@ -15,6 +15,7 @@ import mirror.controller.LoginController;
 import mirror.model.api.API;
 import mirror.model.api.APIRequest;
 import mirror.model.api.APIResponse;
+import mirror.model.resource.APIResource;
 import mirror.model.resource.Resource;
 
 public class MirrorModel {
@@ -95,7 +96,7 @@ public class MirrorModel {
 				if (!comp.has("id")) {
 					comp.put("id", UUID.randomUUID().toString());
 				}
-				Resource r = Resource.create(comp,config);
+				Resource r = Resource.create(comp, config);
 
 				if (r.isRemote()) {
 					remote.put(r.getID(), r);
@@ -129,7 +130,7 @@ public class MirrorModel {
 						old.updateRemoteData(comp);
 						local.put(old.getID(), old);
 					} else {
-						Resource r = Resource.create(comp,config);
+						Resource r = Resource.create(comp, config);
 						config.getComponents().put(comp);
 						local.put(r.getID(), r);
 					}
@@ -154,6 +155,16 @@ public class MirrorModel {
 				}
 			}
 		}
+
+		{
+			for (UUID id : local.keySet()) {
+				Resource r = local.get(id);
+				if (r instanceof APIResource) {
+					((APIResource) r).start();
+				}
+			}
+		}
+
 		resources.putAll(local);
 	}
 

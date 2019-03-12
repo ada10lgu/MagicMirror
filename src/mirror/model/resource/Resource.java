@@ -91,6 +91,7 @@ public abstract class Resource {
 				if (item.name().equalsIgnoreCase(string)) {
 					try {
 						method.invoke(this);
+						return;
 					} catch (IllegalAccessException e) {
 						e.printStackTrace();
 					} catch (IllegalArgumentException e) {
@@ -101,5 +102,6 @@ public abstract class Resource {
 				}
 			}
 		}
+		System.out.printf("Illegal instruction (%s).",string);
 	}
 }

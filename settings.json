@@ -35,8 +35,8 @@
   "images": "img",
   "debug": true,
   "screen": {
-  "fullscreen" : false,
     "preferedScreen": 0,
+    "fullscreen": false,
     "bounds": {
       "r": 5,
       "b": 5,

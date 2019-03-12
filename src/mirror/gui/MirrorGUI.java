@@ -21,6 +21,10 @@ public class MirrorGUI extends JFrame {
 	public MirrorGUI(Config config, MirrorModel model, ImageLoader imageLoader) {
 		System.out.println("Loading UI");
 		JSONObject settings = config.getGUISettings();
+		
+		boolean fullscreen = settings.getBoolean("fullscreen");
+		if (fullscreen) {
+		
 		int preferedScreen = settings.has("preferedScreen") ? settings.getInt("preferedScreen") : 0;
 		GraphicsDevice[] devices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
 		if (devices.length <= preferedScreen) {
@@ -35,7 +39,11 @@ public class MirrorGUI extends JFrame {
 		setSize(width, height);
 		setLocation(0, 0);
 		device.setFullScreenWindow(this);
-
+		} else {
+			setTitle("Magic Mirror");
+			setSize(800,600);
+			setLocation(0,0);
+		}
 		boolean showCursor = settings.has("showCursor") ? settings.getBoolean("showCursor") : true;
 
 		if (!showCursor) {

@@ -49,6 +49,11 @@ public class Clock extends Resource {
 		return data.getInt("dateSize");
 	}
 
+	@ResourceAction(name="time")
+	public void getTime() {
+		
+	}
+	
 	@Override
 	public String getInfo() {
 		return "";

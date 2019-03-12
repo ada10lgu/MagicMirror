@@ -29,11 +29,16 @@ public class ConsoleController extends Thread {
 		while (true) {
 			String line = scan.nextLine();
 			String inst = line.split("\\s+")[0];
+			boolean found = false;
 			for (Instruction instruction : instructions) {
 				if (instruction.hasOperator(inst)) {
 					instruction.excetute(line);
+					found = true;
 					break;
 				}
+			}
+			if (!found) {
+				System.out.printf("Unknwon instruction %s\n", inst);
 			}
 		}
 	}

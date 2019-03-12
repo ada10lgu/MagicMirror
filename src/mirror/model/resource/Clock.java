@@ -49,11 +49,12 @@ public class Clock extends Resource {
 		return data.getInt("dateSize");
 	}
 
-	@ResourceAction(name="time")
+	@ResourceAction(name = "time")
 	public void getTime() {
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		System.out.println(sdf.format(Calendar.getInstance().getTime()).toString());
 	}
-	
+
 	@Override
 	public String getInfo() {
 		return "";
